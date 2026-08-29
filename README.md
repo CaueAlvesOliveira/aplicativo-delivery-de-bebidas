@@ -23,6 +23,20 @@ A proposta é simular o funcionamento de uma plataforma de delivery especializad
 
 ---
 
+## 📱 Desenvolvimento no Figma
+
+Em anexo estará o link para visualizar o board onde foi desenvolvido a UI das seguintes 5 telas:
+
+* Tela de Inicio
+* Tela do Produto
+* Tela do Carrinho
+* Tela do Pagamento
+* Tela de Verificação do pedido
+
+https://www.figma.com/design/FGavv6Oe5wV3DbMC6QftjL/atividade-android?node-id=0-1&t=4b5kjobzLUZ87pgu-1
+
+---
+
 ## 🛠️ Tecnologias Utilizadas
 
 * **Linguagem:** [Kotlin/Java]

@@ -29,7 +29,6 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -41,8 +40,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.Paint
-import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -54,7 +51,6 @@ import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
 import com.example.myapplication.model.Categoria
 import com.example.myapplication.model.Produto
-import org.intellij.lang.annotations.JdkConstants
 
 @Preview
 @Composable
@@ -99,19 +95,19 @@ fun telaInicio() {
                 IconeNotificacoes()
             }
 
-            Spacer(Modifier.height(16.dp)) // era 40.dp
+            Spacer(Modifier.height(16.dp))
 
             BarraPesquisa()
 
-            Spacer(Modifier.height(16.dp)) // era 20.dp
+            Spacer(Modifier.height(16.dp))
 
             ListaCategorias(categorias)
 
-            Spacer(Modifier.height(20.dp)) // era 30.dp
+            Spacer(Modifier.height(20.dp))
 
             cardDeDesconto()
 
-            Spacer(modifier = Modifier.height(16.dp)) // era 30.dp
+            Spacer(modifier = Modifier.height(16.dp))
 
             ListaMaisPedidos(produtos)
         }

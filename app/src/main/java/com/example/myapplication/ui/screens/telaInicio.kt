@@ -69,7 +69,13 @@ fun telaInicio() {
     val produtos = listOf<Produto>(
         Produto("Puro Malte", "350ml", "4,90", R.drawable.puro_malte),
         Produto("Vinho Tinto", "750ml", "32,90", R.drawable.vinho),
-        Produto("Energético", "2L", "22,90", R.drawable.energetico)
+        Produto("Energético", "2L", "22,90", R.drawable.energetico),
+        Produto("Cerveja Long Neck", "355ml", "7,90", R.drawable.cerveja),
+        Produto("Whisky", "1L", "89,90", R.drawable.whisky),
+        Produto("Vodka", "1L", "45,90", R.drawable.vodka),
+        Produto("Gin", "750ml", "79,90", R.drawable.gin),
+        Produto("Cachaça", "700ml", "24,90", R.drawable.cachaca),
+        Produto("Refrigerante Cola", "2L", "9,90", R.drawable.refrigerante),
     )
 
     Scaffold(

@@ -29,9 +29,11 @@ import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -71,46 +73,57 @@ fun telaInicio() {
     )
 
     Scaffold(
-        modifier = Modifier.fillMaxSize(),
-        containerColor = Color(0xFFECECEC),
         bottomBar = {
             BarraDeNavegacaoInferior()
         }
     ) {innerPadding ->
-        Column(
+
+        Surface(
             modifier = Modifier
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp)
-                .verticalScroll(rememberScrollState()),
-            horizontalAlignment = Alignment.CenterHorizontally
+                .fillMaxSize()
+                .padding(innerPadding),
+            color = Color(0xFFECECEC),
         ) {
-            Row(
+            Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.SpaceBetween
+                    .padding(horizontal = 16.dp)
+                    .verticalScroll(rememberScrollState()),
+                horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                EnderecoComponente()
-                IconeNotificacoes()
+                Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    EnderecoComponente()
+                    IconeNotificacoes()
+                }
+
+                Spacer(Modifier.height(16.dp))
+
+                BarraPesquisa()
+
+                Spacer(Modifier.height(16.dp))
+
+                ListaCategorias(categorias)
+
+                Spacer(Modifier.height(20.dp))
+
+                CardDeDesconto()
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                ListaMaisPedidos(produtos)
+
+                Spacer(modifier = Modifier.height(16.dp))
+
+                ListaOfertas(produtos)
             }
-
-            Spacer(Modifier.height(16.dp))
-
-            BarraPesquisa()
-
-            Spacer(Modifier.height(16.dp))
-
-            ListaCategorias(categorias)
-
-            Spacer(Modifier.height(20.dp))
-
-            cardDeDesconto()
-
-            Spacer(modifier = Modifier.height(16.dp))
-
-            ListaMaisPedidos(produtos)
         }
+
+
     }
 }
 
@@ -237,7 +250,7 @@ fun ItemCategoria(categoria: Categoria) {
 }
 
 @Composable
-fun cardDeDesconto() {
+fun CardDeDesconto() {
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -287,7 +300,9 @@ fun ListaMaisPedidos(produtos: List<Produto>) {
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold
         )
+
         Spacer(modifier = Modifier.height(12.dp))
+
         LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             items(produtos) { produto ->
                 CardProduto(produto)
@@ -301,7 +316,7 @@ fun CardProduto(produto: Produto) {
     Box(
         modifier = Modifier
             .width(140.dp)
-            .background(Color.White, shape = RoundedCornerShape(16.dp))
+            .background(Color.White, shape = RoundedCornerShape(10.dp))
             .padding(bottom = 8.dp)
     ) {
         Column {
@@ -357,8 +372,27 @@ fun CardProduto(produto: Produto) {
 }
 
 @Composable
+fun ListaOfertas(produtos: List<Produto>) {
+    Column() {
+        Text(
+            text = "Ofertas da Semana",
+            fontSize = 18.sp,
+            fontWeight = FontWeight.Bold
+        )
+
+        Spacer(modifier = Modifier.height(12.dp))
+
+        LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+            items(produtos) {produto ->
+                CardProduto(produto)
+            }
+        }
+    }
+}
+
+@Composable
 fun BarraDeNavegacaoInferior() {
-    var itemSelecionado by remember { mutableStateOf(0) }
+    var itemSelecionado by remember { mutableIntStateOf(0) }
 
     val itens = listOf<Triple<String, Int, Int>>(
         Triple("Início", R.drawable.home_24, 0),
@@ -381,8 +415,8 @@ fun BarraDeNavegacaoInferior() {
                     Text(text = nome)
                 },
                 colors = NavigationBarItemDefaults.colors(
-                    selectedIconColor = Color.Black,
-                    selectedTextColor = Color.Black,
+                    selectedIconColor = Color(0xFFFF7043),
+                    selectedTextColor = Color(0xFFFF7043),
                     unselectedIconColor = Color.Gray,
                     unselectedTextColor = Color.Gray,
                     indicatorColor = Color.Transparent

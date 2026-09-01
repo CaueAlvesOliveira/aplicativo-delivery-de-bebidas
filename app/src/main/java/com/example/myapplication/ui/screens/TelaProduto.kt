@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
@@ -106,15 +107,18 @@ fun BotaoVoltar() {
 
 @Composable
 fun BotaoFavorito() {
+
+    var favoritado by remember { mutableStateOf(false) }
+
     IconButton(
-        onClick = {},
+        onClick = {favoritado = !favoritado},
         modifier = Modifier
             .size(48.dp)
             .background(Color.White, shape = CircleShape)
             .border(1.dp, Color.LightGray, shape = CircleShape),
     ) {
         Icon(
-            painter = painterResource(id = R.drawable.favorite_24),
+            painter = if (favoritado) painterResource(id = R.drawable.favorite_fill24) else painterResource(id = R.drawable.favorite_24),
             contentDescription = "Favoritar produto",
             tint = Color(0xFFE53935),
         )
@@ -164,7 +168,7 @@ fun InformacoesProduto() {
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             TagProduto(texto = "350ml")
             TagProduto(texto = "4,7% álcool")
-            TagProduto(texto = "sempre gelada", cor = Color(0xFF4CAF50))
+            TagProduto(texto = "sempre gelada")
         }
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -178,17 +182,17 @@ fun InformacoesProduto() {
 }
 
 @Composable
-fun TagProduto(texto: String, cor: Color = Color(164, 158, 160)) {
+fun TagProduto(texto: String) {
     Box(
         modifier = Modifier
             .background(Color.White, shape = RoundedCornerShape(50))
-            .border(1.dp, cor, shape = RoundedCornerShape(50))
+            .border(1.dp, Color(164, 158, 160), shape = RoundedCornerShape(50))
             .padding(horizontal = 14.dp, vertical = 8.dp)
     ) {
         Text(
             text = texto,
             fontSize = 12.sp,
-            color = cor
+            color = Color(164, 158, 160)
         )
     }
 }

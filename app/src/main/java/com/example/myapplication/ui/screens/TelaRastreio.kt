@@ -36,8 +36,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.myapplication.R
-
-enum class EstadoEtapa { CONCLUIDA, ATUAL, PENDENTE }
+import com.example.myapplication.model.EstadoEtapa
 
 @Preview
 @Composable
@@ -200,12 +199,7 @@ fun LinhaConectora(concluida: Boolean) {
 }
 
 @Composable
-fun EtapaPedido(
-    icone: Int,
-    texto: String,
-    estado: EstadoEtapa,
-    modifier: Modifier = Modifier
-) {
+fun EtapaPedido(icone: Int, texto: String, estado: EstadoEtapa, modifier: Modifier = Modifier) {
     val cor = when (estado) {
         EstadoEtapa.CONCLUIDA -> Color(0xFF4CAF50)
         EstadoEtapa.ATUAL -> Color(0xFFE53935)

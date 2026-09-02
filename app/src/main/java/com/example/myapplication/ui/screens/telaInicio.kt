@@ -47,10 +47,12 @@ import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.modifier.ModifierLocalReadScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
@@ -76,10 +78,13 @@ fun telaInicio() {
         Produto("Energético", "2L", "22,90", R.drawable.energetico),
         Produto("Cerveja Long Neck", "355ml", "7,90", R.drawable.cerveja),
         Produto("Whisky", "1L", "89,90", R.drawable.whisky),
-        Produto("Vodka", "1L", "45,90", R.drawable.vodka),
-        Produto("Gin", "750ml", "79,90", R.drawable.gin),
-        Produto("Cachaça", "700ml", "24,90", R.drawable.cachaca),
-        Produto("Refrigerante Cola", "2L", "9,90", R.drawable.refrigerante),
+    )
+
+    var produtosOferta = listOf<Produto>(
+        Produto("Vodka", "1L", "45,90", R.drawable.vodka, "20"),
+        Produto("Gin", "750ml", "79,90", R.drawable.gin, "10"),
+        Produto("Cachaça", "700ml", "24,90", R.drawable.cachaca, "30"),
+        Produto("Refrigerante Cola", "2L", "9,90", R.drawable.refrigerante, "35")
     )
 
     Scaffold(
@@ -129,7 +134,7 @@ fun telaInicio() {
 
                 Spacer(modifier = Modifier.height(16.dp))
 
-                ListaOfertas(produtos)
+                ListaOfertas(produtosOferta)
             }
         }
 
@@ -407,7 +412,86 @@ fun ListaOfertas(produtos: List<Produto>) {
 
         LazyRow(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
             items(produtos) {produto ->
-                CardProduto(produto)
+                CardProdutoOferta(produto)
+            }
+        }
+    }
+}
+
+@Composable
+fun CardProdutoOferta(produto: Produto) {
+    Box(
+        modifier = Modifier
+            .width(140.dp)
+            .background(Color.White, shape = RoundedCornerShape(10.dp))
+            .padding(bottom = 8.dp)
+    ) {
+        Column {
+            Image(
+                painter = painterResource(id = produto.imagem),
+                contentDescription = produto.nome,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(100.dp)
+                    .padding(12.dp),
+                contentScale = ContentScale.Fit
+            )
+
+            Column(modifier = Modifier.padding(horizontal = 12.dp)) {
+                Text(
+                    text = produto.nome,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 13.sp,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                )
+                Text(
+                    text = produto.volume,
+                    fontSize = 12.sp,
+                    color = Color.Gray
+                )
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = produto.preco,
+                    fontWeight = FontWeight.Bold,
+                    fontSize = 14.sp
+                )
+            }
+        }
+
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier
+                .align(Alignment.BottomEnd)
+                .padding(end = 8.dp, bottom = 4.dp)
+                .size(24.dp)
+                .background(Color(0xFFFF7043), shape = CircleShape)
+                .clickable {}
+        ) {
+            Icon(
+                painter = painterResource(id = R.drawable.add_24),
+                contentDescription = "Adicionar",
+                tint = Color.Black,
+                modifier = Modifier.size(14.dp)
+            )
+        }
+
+        if (!produto.desconto.isNullOrEmpty()) {
+            Box(
+                modifier = Modifier
+                    .align(Alignment.TopEnd)
+                    .background(
+                        color = Color.Red,
+                        shape = RoundedCornerShape(topEnd = 10.dp, bottomStart = 10.dp)
+                    )
+                    .padding(horizontal = 8.dp, vertical = 4.dp)
+            ) {
+                Text(
+                    text = produto.desconto + "%",
+                    color = Color.White,
+                    fontSize = 11.sp,
+                    fontWeight = FontWeight.Bold
+                )
             }
         }
     }

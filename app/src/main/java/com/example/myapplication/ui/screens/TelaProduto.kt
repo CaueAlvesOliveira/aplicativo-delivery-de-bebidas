@@ -47,7 +47,7 @@ import com.example.myapplication.R
 @Preview
 @Composable
 fun TelaProduto() {
-    Scaffold() { innerPadding ->
+    Scaffold { innerPadding ->
         Surface(
             modifier = Modifier
                 .padding(innerPadding)
@@ -158,7 +158,7 @@ fun InformacoesProduto() {
         Spacer(modifier = Modifier.height(4.dp))
 
         Text(
-            text = "Cerveja Puro Malte 350ml",
+            text = "Cerveja Puro Malte",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold
         )
@@ -166,9 +166,9 @@ fun InformacoesProduto() {
         Spacer(modifier = Modifier.height(12.dp))
 
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-            TagProduto(texto = "350ml")
-            TagProduto(texto = "4,7% álcool")
-            TagProduto(texto = "sempre gelada")
+            TagProduto(texto = "350ml",  color = Color.Gray)
+            TagProduto(texto = "4,7% álcool",  color = Color.Gray)
+            TagProduto(texto = "sempre gelada", color = Color.Green)
         }
 
         Spacer(modifier = Modifier.height(12.dp))
@@ -182,17 +182,17 @@ fun InformacoesProduto() {
 }
 
 @Composable
-fun TagProduto(texto: String) {
+fun TagProduto(texto: String, color: Color) {
     Box(
         modifier = Modifier
             .background(Color.White, shape = RoundedCornerShape(50))
-            .border(1.dp, Color(164, 158, 160), shape = RoundedCornerShape(50))
+            .border(1.dp, color, shape = RoundedCornerShape(50))
             .padding(horizontal = 14.dp, vertical = 8.dp)
     ) {
         Text(
             text = texto,
             fontSize = 12.sp,
-            color = Color(164, 158, 160)
+            color = color
         )
     }
 }

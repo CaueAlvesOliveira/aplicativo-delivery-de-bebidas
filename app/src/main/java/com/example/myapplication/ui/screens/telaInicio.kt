@@ -43,16 +43,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.PaintingStyle.Companion.Stroke
 import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.layout.ContentScale
-import androidx.compose.ui.modifier.ModifierLocalReadScope
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.LineHeightStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
@@ -80,11 +77,11 @@ fun telaInicio() {
         Produto("Whisky", "1L", "89,90", R.drawable.whisky),
     )
 
-    var produtosOferta = listOf<Produto>(
+    val produtosOferta = listOf<Produto>(
         Produto("Vodka", "1L", "45,90", R.drawable.vodka, "20"),
         Produto("Gin", "750ml", "79,90", R.drawable.gin, "10"),
         Produto("Cachaça", "700ml", "24,90", R.drawable.cachaca, "30"),
-        Produto("Refrigerante Cola", "2L", "9,90", R.drawable.refrigerante, "35")
+        Produto("Coca Cola", "2L", "9,90", R.drawable.refrigerante, "35")
     )
 
     Scaffold(
@@ -163,7 +160,7 @@ fun EnderecoComponente() {
             )
 
             Text(
-                text = "R. Fiar Longo, 123",
+                text = "R. Barão das flores, 123",
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold
             )
@@ -346,6 +343,7 @@ fun CardProduto(produto: Produto) {
             .width(140.dp)
             .background(Color.White, shape = RoundedCornerShape(10.dp))
             .padding(bottom = 8.dp)
+            .clickable{}
     ) {
         Column {
             Image(
@@ -425,6 +423,7 @@ fun CardProdutoOferta(produto: Produto) {
             .width(140.dp)
             .background(Color.White, shape = RoundedCornerShape(10.dp))
             .padding(bottom = 8.dp)
+            .clickable{}
     ) {
         Column {
             Image(

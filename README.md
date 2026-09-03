@@ -51,6 +51,12 @@ Por isso a tela inicial mostra a categoria e os produtos mais pedidos, o usuári
 
 ---
 
+## Anexos
+
+https://drive.google.com/drive/folders/1D5RiLn466mixH6bFV3fAX9WgHVDCdutl?usp=sharing
+
+---
+
 ## Tecnologias Utilizadas
 
 * **Linguagem:** [Kotlin]
